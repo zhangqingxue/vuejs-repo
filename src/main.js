@@ -5,9 +5,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import 'element-ui//lib/index.js'
 import Main from './components/Main.vue'
 import Login from './components/Login.vue'
 Vue.config.productionTip = false
+Vue.use(VueRouter)
+Vue.use(ElementUI)
 const routes = [
   { name: 'main', path: '/sub', component: Main },
   { name: 'Login.vue', path: '/', component: Login }
@@ -15,7 +18,6 @@ const routes = [
 var router = new VueRouter({
   routes
 })
-Vue.use(VueRouter)
 var App = {
   template: '<router-view></router-view>'
 }

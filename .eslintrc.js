@@ -33,7 +33,9 @@ module.exports = {
     "no-trailing-spaces": "off", // 一行结束后面不要有空格
     "indent": "off",
     "key-spacing": "off",
+    "padded-blocks": "off",
     "no-multiple-empty-lines": "off",
+    "space-before-blocks": "off",
     "semi": "off", // 允许以分号结束
     "space-before-function-paren": "off" // 函数定义时括号前面要不要有空格
   }
