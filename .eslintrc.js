@@ -34,6 +34,7 @@ module.exports = {
     "indent": "off",
     "key-spacing": "off",
     "padded-blocks": "off",
+    "standard/object-curly-even-spacing": "off",
     "no-multiple-empty-lines": "off",
     "space-before-blocks": "off",
     "semi": "off", // 允许以分号结束

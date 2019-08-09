@@ -24,7 +24,8 @@
         </el-row>
         <span class="err-msg"></span>
         <el-row style="margin: 20px 5px">
-          <el-button type="primary" class="el-login" @click="login()">登录</el-button>
+          <!--<router-link to="{name: 'Home'} "><el-button type="primary" class="el-login" @click="login()">登录</el-button></router-link>-->
+          <router-link :to="{name: 'Home'}"> to apple</router-link>
         </el-row>
       </div>
     </div>
@@ -46,10 +47,9 @@
         }
       }
     },
-    template: '<router-view></router-view>',
     methods: {
       check(name, pwd) {
-        console.log(this.name = this.$data.name) // 两者等价
+        // console.log(this.name = this.$data.name) // 两者等价
         if (!name) {
           $('#login_user_error').css('display', 'inline');
           return false
@@ -61,9 +61,9 @@
         return true
       },
       login() {
-        const {name, pwd} = this
-        if (!this.check(name, pwd)) return
-        console.log('我这里通过了。。。。')
+        const {name, pwd} = this;
+        if (!this.check(name, pwd)) return;
+        console.log('我这里通过了。。。。');
         // const url = 'http://localhost:8085/springboot-test/base/userList'
         // this.$http.post({url: url, headers: {Authorization: ''}})
         //   .then(() => {
@@ -96,7 +96,7 @@
 
   .login_bg {
     background-size: cover;
-    background-image: url(../assets/dangdang.jpg);
+    background-image: url(assets/dangdang.jpg);
     background-repeat: no-repeat;
     background-position: center center;
     height: 62%;
