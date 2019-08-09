@@ -24,8 +24,7 @@
         </el-row>
         <span class="err-msg"></span>
         <el-row style="margin: 20px 5px">
-          <!--<router-link to="{name: 'Home'} "><el-button type="primary" class="el-login" @click="login()">登录</el-button></router-link>-->
-          <router-link :to="{name: 'Home'}"> to apple</router-link>
+          <el-button type="primary" class="el-login" @click="login()">登录</el-button>
         </el-row>
       </div>
     </div>
