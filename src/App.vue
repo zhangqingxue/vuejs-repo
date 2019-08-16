@@ -2,31 +2,33 @@
   <div class="login">
     <div class="header"></div>
     <div class="login_bg">
-      <!--<img src="../assets/dangdang.jpg">-->
-      <div class="homepage-module clearfix">
-        <p class="pass_login">密码登录</p>
-        <el-row style="margin: 20px 5px">
-          <el-input class="el-inputs" id="name" v-model="name" size="large" placeholder="请输入帐号" clearable>
-            <i slot="prefix" class="el-input__icon el-icon-s-custom"></i>
-          </el-input>
-          <p class="tips error_words" id="user_mindstyle">
-            <span class="login_user_error" id="login_user_error" style="display: none">请输入您的用户名</span>
-          </p>
-        </el-row>
-        <el-row style="margin: 20px 5px">
-          <el-input class="el-inputs" v-model="pwd" @input="change($event)" size="large" placeholder="请输入密码"
-                    show-password clearable>
-            <i slot="prefix" class="el-input__icon el-icon-key"></i>
-          </el-input>
-          <p class="tips error_words" id="pass_mindstyle">
-            <span class="login_pwd_error" id="login_pwd_error" style="display: none">请输入您的登录密码</span>
-          </p>
-        </el-row>
-        <span class="err-msg"></span>
-        <el-row style="margin: 20px 5px">
-          <el-button type="primary" class="el-login" @click="login()">登录</el-button>
-        </el-row>
-      </div>
+      <!--<img src="../assets/dangdang.jpg" style="display: none;">-->
+      <div class="homepage-module set_area">
+        <div class="wrap">
+          <p class="pass_login">密码登录</p>
+          <el-row style="margin: 20px 5px">
+            <el-input class="el-inputs" id="name" v-model="name" size="large" placeholder="请输入帐号" clearable>
+              <i slot="prefix" class="el-input__icon el-icon-s-custom"></i>
+            </el-input>
+            <p class="tips error_words" id="user_mindstyle">
+              <span class="login_user_error" id="login_user_error" style="display: none">请输入您的用户名</span>
+            </p>
+          </el-row>
+          <el-row style="margin: 20px 5px">
+            <el-input class="el-inputs" v-model="pwd" @input="change($event)" size="large" placeholder="请输入密码"
+                      show-password clearable>
+              <i slot="prefix" class="el-input__icon el-icon-key"></i>
+            </el-input>
+            <p class="tips error_words" id="pass_mindstyle">
+              <span class="login_pwd_error" id="login_pwd_error" style="display: none">请输入您的登录密码</span>
+            </p>
+          </el-row>
+          <span class="err-msg"></span>
+          <el-row style="margin: 20px 5px">
+            <el-button type="primary" class="el-login" @click="login()">登录</el-button>
+          </el-row>
+        </div>
+        </div>
     </div>
     <div class="footer"></div>
   </div>
@@ -63,7 +65,7 @@
         const {name, pwd} = this;
         if (!this.check(name, pwd)) return;
         console.log('我这里通过了。。。。');
-        // const url = 'http://localhost:8085/springboot-test/base/userList'
+        // const url = 'http://localhost:8085/springboot-test/base/userPages?pageNum=0&pageSize=1'
         // this.$http.post({url: url, headers: {Authorization: ''}})
         //   .then(() => {
         //     // 请求成功回调
@@ -74,7 +76,7 @@
         //     console.log('error')
         //
         //   });
-        this.$router.push({name: 'Home'});
+        // this.$router.push({name: 'Home'});
       },
 
       // 解决密码框输入无法实时显示问题
@@ -87,34 +89,42 @@
 </script>
 
 <style scoped lang="scss">
-  .login {
-    height: 100%;
-    width: 100%;
-    position: absolute;
+
+  .login_bg .set_area {
+    width: 1200px;
+    height: 1000px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .wrap {
+    background: #fff;
+    padding: 15px 25px 15px 15px;
+    *padding: 15px 25px 20px 15px;
+    float: right;
+    width: 320px;
+    color: #6e6e6e;
+    /*margin: 90px auto 0;*/
+    position: relative;
+    border: 1px solid #eef2f4;
+    box-shadow: 0px 1px 2px #eee;
   }
 
   .login_bg {
     background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
     background-image: url(assets/dangdang.jpg);
     background-repeat: no-repeat;
     background-position: center center;
-    height: 62%;
+    height: 190px;
     width: 100%;
-    position: relative;
-    margin-top: 5%;
+    zoom: 1;
   }
 
-  .pass_login {
-    font-size: 18px;
-    color: #3c3c3c;
-    margin-top: 5px;
-    height: 30px;
-  }
 
   .el-inputs {
     width: 300px;
-    /*margin-top: 5px;*/
-    /*margin-bottom: 5px;*/
   }
 
 
@@ -122,45 +132,10 @@
     display: block;
   }
 
-  .homepage-module {
-    background: #fff;
-    padding: 15px 25px 15px 15px;
-    *padding: 15px 25px 20px 15px;
-    /*float: right;*/
-    width: 300px;
-    color: #6e6e6e;
-    /*margin: 130px 10% 0 10%;*/
-    position: absolute;
-    top: 160px;
-    right: 280px;
-    /*left: 54%;*/
-    /*bottom: 40%;*/
-    border: 1px solid #eef2f4;
-    box-shadow: 0px 1px 2px #eee;
-    /*margin-top: 15%;*/
-  }
-
-  /*.clearfix {*/
-  /*zoom: 1;*/
-  /*}*/
-
-  /*.clearfix:after {*/
-  /*content: '';*/
-  /*display: block;*/
-  /*clear: both;*/
-  /*}*/
-
   img {
     border: none;
     position: absolute;
     z-index: -1;
-    /*margin-top: 20px;*/
-    /*background-size: cover;*/
-    /*!*background-image: url(../assets/dangdang.jpg);*!*/
-    /*background-repeat: no-repeat;*/
-    /*height: 62%;*/
-    /*width: 100%;*/
-    /*margin-top: 5%;*/
   }
 
   .error_words {
@@ -182,6 +157,22 @@
   body {
     min-width: 1360px;
     overflow: scroll;
+  }
+
+  .head {
+    margin: 12px auto 14px;
+    width: 1200px;
+    height: 60px;
+  }
+
+  body {
+    background: #ffffff;
+  }
+
+  body, h1, h2, h3, p, ol, ul, dl, dd {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
   }
 
   p, ol, ul, dl, dd {

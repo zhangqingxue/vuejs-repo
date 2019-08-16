@@ -3,29 +3,31 @@
     <div class="header"></div>
     <div class="login_bg">
       <!--<img src="../assets/dangdang.jpg">-->
-      <div class="homepage-module clearfix">
-        <p class="pass_login">密码登录</p>
-        <el-row style="margin: 20px 5px">
-          <el-input class="el-inputs" id="name" v-model="name" size="large" placeholder="请输入帐号" clearable>
-            <i slot="prefix" class="el-input__icon el-icon-s-custom"></i>
-          </el-input>
-          <p class="tips error_words" id="user_mindstyle">
-            <span class="login_user_error" id="login_user_error" style="display: none">请输入您的用户名</span>
-          </p>
-        </el-row>
-        <el-row style="margin: 20px 5px">
-          <el-input class="el-inputs" v-model="pwd" @input="change($event)" size="large" placeholder="请输入密码"
-                    show-password clearable>
-            <i slot="prefix" class="el-input__icon el-icon-key"></i>
-          </el-input>
-          <p class="tips error_words" id="pass_mindstyle">
-            <span class="login_pwd_error" id="login_pwd_error" style="display: none">请输入您的登录密码</span>
-          </p>
-        </el-row>
-        <span class="err-msg"></span>
-        <el-row style="margin: 20px 5px">
-          <el-button type="primary" class="el-login" @click="login()">登录</el-button>
-        </el-row>
+      <div class="homepage-module">
+        <div class="wrap">
+          <p class="pass_login">密码登录</p>
+          <el-row style="margin: 20px 5px">
+            <el-input class="el-inputs" id="name" v-model="name" size="large" placeholder="请输入帐号" clearable>
+              <i slot="prefix" class="el-input__icon el-icon-s-custom"></i>
+            </el-input>
+            <p class="tips error_words" id="user_mindstyle">
+              <span class="login_user_error" id="login_user_error" style="display: none">请输入您的用户名</span>
+            </p>
+          </el-row>
+          <el-row style="margin: 20px 5px">
+            <el-input class="el-inputs" v-model="pwd" @input="change($event)" size="large" placeholder="请输入密码"
+                      show-password clearable>
+              <i slot="prefix" class="el-input__icon el-icon-key"></i>
+            </el-input>
+            <p class="tips error_words" id="pass_mindstyle">
+              <span class="login_pwd_error" id="login_pwd_error" style="display: none">请输入您的登录密码</span>
+            </p>
+          </el-row>
+          <span class="err-msg"></span>
+          <el-row style="margin: 20px 5px">
+            <el-button type="primary" class="el-login" @click="login()">登录</el-button>
+          </el-row>
+        </div>
       </div>
     </div>
     <div class="footer"></div>
@@ -41,12 +43,14 @@
       return {
         name: '',
         pwd: '',
+        screenWidth: '',
+        screenHeight: '',
         error: {
           warning: ''
         }
       }
     },
-    template: '<router-view></router-view>',
+    // template: '<router-view></router-view>',
     methods: {
       check(name, pwd) {
         console.log(this.name = this.$data.name) // 两者等价
@@ -99,11 +103,13 @@
     background-image: url(../assets/dangdang.jpg);
     background-repeat: no-repeat;
     background-position: center center;
-    height: 62%;
+    height: 600px;
     width: 100%;
     position: relative;
     margin-top: 5%;
+
   }
+
 
   .pass_login {
     font-size: 18px;
@@ -127,41 +133,20 @@
     background: #fff;
     padding: 15px 25px 15px 15px;
     *padding: 15px 25px 20px 15px;
-    /*float: right;*/
     width: 300px;
     color: #6e6e6e;
     /*margin: 130px 10% 0 10%;*/
     position: absolute;
     top: 160px;
-    right: 280px;
-    /*left: 54%;*/
-    /*bottom: 40%;*/
+    right: 18%;
     border: 1px solid #eef2f4;
     box-shadow: 0px 1px 2px #eee;
-    /*margin-top: 15%;*/
   }
-
-  /*.clearfix {*/
-  /*zoom: 1;*/
-  /*}*/
-
-  /*.clearfix:after {*/
-  /*content: '';*/
-  /*display: block;*/
-  /*clear: both;*/
-  /*}*/
 
   img {
     border: none;
     position: absolute;
     z-index: -1;
-    /*margin-top: 20px;*/
-    /*background-size: cover;*/
-    /*!*background-image: url(../assets/dangdang.jpg);*!*/
-    /*background-repeat: no-repeat;*/
-    /*height: 62%;*/
-    /*width: 100%;*/
-    /*margin-top: 5%;*/
   }
 
   .error_words {
