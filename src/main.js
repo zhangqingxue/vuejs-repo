@@ -8,11 +8,11 @@ import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui//lib/index.js'
 
 import global_ from './components/Global' // 引用文件
-import Home from './components/Home.vue'
 
+import Home from './components/Home.vue'
 import Login from './components/Login.vue'
 Vue.config.productionTip = false
-Vue.prototype.GLOBAL = global_ // 挂载到Vue实例上面
+Vue.prototype.GLOBAL = global_
 Vue.use(VueRouter)
 Vue.use(ElementUI)
 Vue.use(VueResource)

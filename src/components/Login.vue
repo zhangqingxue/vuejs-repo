@@ -2,7 +2,6 @@
   <div class="login">
     <div class="header"></div>
     <div class="login_bg">
-      <!--<img src="../assets/dangdang.jpg">-->
       <div class="homepage-module">
         <div class="wrap">
           <p class="pass_login">密码登录</p>
@@ -12,11 +11,12 @@
             </el-input>
             <p class="tips error_words" id="user_mindstyle">
               <span class="login_user_error" id="login_user_error" style="display: none">请输入您的用户名</span>
+              <span class="input_user_error" id="input_user_error" style="display: none">用户名或密码输入有误</span>
             </p>
           </el-row>
           <el-row style="margin: 20px 5px">
             <el-input class="el-inputs" v-model="pwd" @input="change($event)" size="large" placeholder="请输入密码"
-                      show-password clearable>
+                      @keyup.13.native="login" show-password clearable>
               <i slot="prefix" class="el-input__icon el-icon-key"></i>
             </el-input>
             <p class="tips error_words" id="pass_mindstyle">
@@ -43,43 +43,50 @@
         name: '',
         pwd: '',
         screenWidth: window.document.body.clientWidth,
-        screenHeight: document.body.clientHeight,
-        error: {
-          warning: ''
-        }
+        screenHeight: document.body.clientHeight
       }
     },
-    // template: '<router-view></router-view>',
     methods: {
       check(name, pwd) {
-        console.log(this.name = this.$data.name) // 两者等价
+        // console.log(this.name = this.$data.name) // 两者等价
         if (!name) {
-          this.$('#login_user_error').css('display', 'inline');
+          $('#login_user_error').css('display', 'inline');
           return false
         }
         if (!pwd) {
-          this.$('#login_pwd_error').css('display', 'inline');
+          $('#login_pwd_error').css('display', 'inline');
           return false
         }
+        $('#login_user_error').css('display', 'none');
+        $('#login_pwd_error').css('display', 'none');
         return true
       },
       login() {
-        const {name, pwd} = this;
-        if (!this.check(name, pwd)) return;
-        console.log('我这里通过了。。。。');
-        const url = this.urlPrefix + '/base/userList';
+        // const {name, pwd} = this;
+        if (!this.check(this.name, this.pwd)) return;
+        console.log('我这里通过了。。。。' + this.GLOBAL.urlPrefix);
+        const url = this.GLOBAL.urlPrefix + '/api/v1/user/login';
         console.log(url);
-        this.$http.post(url, {}, {})
-          .then(() => {
+        const data = {
+          userName: this.name,
+          password: this.pwd
+        }
+        this.$http.get(url, {params: data})
+          .then((response) => {
             // 请求成功回调
-            console.log('success')
+            console.log(response.data);
+            if (response.data !== null && response.data !== '') {
+              this.$router.push({name: 'Home'});
+            } else {
+              $('#input_user_error').css('display', 'inline');
+            }
+          }, (response) => {
 
-          }, () => {
             // 请求失败回调
             console.log('error')
+            console.log(response)
 
           });
-        this.$router.push({name: 'Home'});
       },
 
       // 解决密码框输入无法实时显示问题
