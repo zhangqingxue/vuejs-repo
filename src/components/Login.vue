@@ -35,7 +35,6 @@
 </template>
 
 <script>
-  import $ from 'jquery'
 
   export default {
     name: 'App',
@@ -43,8 +42,8 @@
       return {
         name: '',
         pwd: '',
-        screenWidth: '',
-        screenHeight: '',
+        screenWidth: window.document.body.clientWidth,
+        screenHeight: document.body.clientHeight,
         error: {
           warning: ''
         }
@@ -55,30 +54,31 @@
       check(name, pwd) {
         console.log(this.name = this.$data.name) // 两者等价
         if (!name) {
-          $('#login_user_error').css('display', 'inline');
+          this.$('#login_user_error').css('display', 'inline');
           return false
         }
         if (!pwd) {
-          $('#login_pwd_error').css('display', 'inline');
+          this.$('#login_pwd_error').css('display', 'inline');
           return false
         }
         return true
       },
       login() {
-        const {name, pwd} = this
-        if (!this.check(name, pwd)) return
-        console.log('我这里通过了。。。。')
-        // const url = 'http://localhost:8085/springboot-test/base/userList'
-        // this.$http.post({url: url, headers: {Authorization: ''}})
-        //   .then(() => {
-        //     // 请求成功回调
-        //     console.log('success')
-        //
-        //   }, () => {
-        //     // 请求失败回调
-        //     console.log('error')
-        //
-        //   });
+        const {name, pwd} = this;
+        if (!this.check(name, pwd)) return;
+        console.log('我这里通过了。。。。');
+        const url = this.urlPrefix + '/base/userList';
+        console.log(url);
+        this.$http.post(url, {}, {})
+          .then(() => {
+            // 请求成功回调
+            console.log('success')
+
+          }, () => {
+            // 请求失败回调
+            console.log('error')
+
+          });
         this.$router.push({name: 'Home'});
       },
 
@@ -96,6 +96,8 @@
     height: 100%;
     width: 100%;
     position: absolute;
+    min-width: 1500px;
+    min-height: 700px;
   }
 
   .login_bg {

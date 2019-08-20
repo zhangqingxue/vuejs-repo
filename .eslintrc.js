@@ -37,6 +37,7 @@ module.exports = {
     "standard/object-curly-even-spacing": "off",
     "no-multiple-empty-lines": "off",
     "space-before-blocks": "off",
+    "no-multi-spaces": "off",
     "semi": "off", // 允许以分号结束
     "space-before-function-paren": "off" // 函数定义时括号前面要不要有空格
   }
