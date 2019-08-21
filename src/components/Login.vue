@@ -11,7 +11,8 @@
             </el-input>
             <p class="tips error_words" id="user_mindstyle">
               <span class="login_user_error" id="login_user_error" style="display: none">请输入您的用户名</span>
-              <span class="input_user_error" id="input_user_error" style="display: none">用户名或密码输入有误</span>
+              <span class="input_error" id="input_error" style="display: none">用户名或密码输入有误</span>
+              <span class="request_error" id="request_error" style="display: none">请求异常，请稍后重试</span>
             </p>
           </el-row>
           <el-row style="margin: 20px 5px">
@@ -78,13 +79,14 @@
             if (response.data !== null && response.data !== '') {
               this.$router.push({name: 'Home'});
             } else {
-              $('#input_user_error').css('display', 'inline');
+              $('#input_error').css('display', 'inline');
             }
           }, (response) => {
 
             // 请求失败回调
             console.log('error')
             console.log(response)
+            $('#request_error').css('display', 'inline');
 
           });
       },
