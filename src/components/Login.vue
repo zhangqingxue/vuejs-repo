@@ -63,11 +63,8 @@
         return true
       },
       login() {
-        // const {name, pwd} = this;
         if (!this.check(this.name, this.pwd)) return;
-        console.log('我这里通过了。。。。' + this.GLOBAL.urlPrefix);
         const url = this.GLOBAL.urlPrefix + '/api/v1/user/login';
-        console.log(url);
         const data = {
           userName: this.name,
           password: this.pwd
@@ -75,7 +72,7 @@
         this.$http.get(url, {params: data})
           .then((response) => {
             // 请求成功回调
-            console.log(response.data);
+            // console.log(response.data);
             if (response.data !== null && response.data !== '') {
               this.$router.push({name: 'Home'});
             } else {
@@ -84,8 +81,6 @@
           }, (response) => {
 
             // 请求失败回调
-            console.log('error')
-            console.log(response)
             $('#request_error').css('display', 'inline');
 
           });

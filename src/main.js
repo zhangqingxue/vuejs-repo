@@ -11,19 +11,26 @@ import global_ from './components/Global' // 引用文件
 
 import Home from './components/Home.vue'
 import Login from './components/Login.vue'
+
 Vue.config.productionTip = false
 Vue.prototype.GLOBAL = global_
 Vue.use(VueRouter)
 Vue.use(ElementUI)
 Vue.use(VueResource)
 const routes = [
-  { name: 'Home', path: '/Home', component: Home },
-  { name: 'Login', path: '/', component: Login }
+  {name: 'Home', path: '/Home', component: Home},
+  {name: 'Login', path: '/', component: Login}
 ]
 
 var router = new VueRouter({
   routes
 })
+
+// login 登录拦截
+router.beforeEach((to, from, next) => {
+    next()
+})
+
 const App = {
   template: '<router-view></router-view>'
 }
